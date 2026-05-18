@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>It's Just A Dance — Beta</title>
-  <meta name="description" content="It's Just A Dance connects dancers at venues who are looking for a partner. Now in Beta — join the TestFlight." />
+  <title>It's Just A Dance — Find your partner tonight.</title>
+  <meta name="description" content="It's Just A Dance connects dancers at venues who are looking for a partner. No photos. No messages. Just show up, check in, and dance." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics -->
-  <!-- Replace G-XXXXXXXXXX with your Measurement ID from analytics.google.com -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8V1XS2K0N"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-X8V1XS2K0N');
   </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --gold: #FFB612;
+      --gold-dim: #cc9200;
       --bg: #0d0d0d;
       --card: #141414;
       --border: #222;
@@ -29,28 +31,22 @@
       --muted: #888;
       --faint: #444;
     }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
 
-    /* BETA BANNER */
-    .beta-banner {
-      background: rgba(255,182,18,0.1);
-      border-bottom: 1px solid rgba(255,182,18,0.3);
-      padding: 10px 24px;
-      text-align: center;
-      font-size: 13px;
-      color: var(--gold);
-      letter-spacing: 0.3px;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .beta-banner strong { font-weight: 500; }
-    .beta-banner a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 
+    /* ── NAV ── */
     nav {
       position: fixed;
-      top: 40px; left: 0; right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -60,11 +56,34 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold); text-decoration: none; letter-spacing: -0.3px; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 0.3px; transition: color 0.2s; }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
     .nav-links a:hover { color: var(--text); }
 
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -72,10 +91,11 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 160px 24px 80px;
+      padding: 120px 24px 80px;
       position: relative;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -85,113 +105,336 @@
       background: radial-gradient(circle, rgba(255,182,18,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s; }
-    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: 1.0; letter-spacing: -2px; margin-bottom: 8px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s; }
-    .hero-title em { font-style: italic; color: var(--gold); }
-    .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 32px); font-weight: 700; font-style: italic; color: var(--muted); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s; }
-    .hero-body { max-width: 540px; font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s; }
-    .hero-body strong { color: var(--text); font-weight: 500; }
 
-    /* BETA CTA */
-    .beta-cta {
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-body {
+      max-width: 540px;
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .hero-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .hero-cta {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 1.0s;
     }
-    .beta-cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
+
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--gold); color: #000;
-      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
-      padding: 14px 28px; border-radius: 100px; text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 100px;
+      text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,182,18,0.3); }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255,182,18,0.3);
+    }
+
     .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--muted);
-      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400;
-      padding: 14px 28px; border-radius: 100px; border: 1px solid var(--border);
-      text-decoration: none; transition: color 0.2s, border-color 0.2s;
-    }
-    .btn-secondary:hover { color: var(--text); border-color: var(--faint); }
-
-    .qr-block {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-    }
-    .qr-label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      gap: 8px;
+      background: transparent;
       color: var(--muted);
-    }
-    .qr-img {
-      width: 140px;
-      height: 140px;
-      border: 2px solid rgba(255,182,18,0.3);
-      border-radius: 8px;
-      padding: 8px;
-      background: var(--bg);
-    }
-    .qr-sub {
-      font-size: 11px;
-      color: var(--faint);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      padding: 14px 28px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s;
     }
 
-    .beta-note {
-      font-size: 12px;
-      color: var(--faint);
-      max-width: 400px;
+    .btn-secondary:hover {
+      color: var(--text);
+      border-color: var(--faint);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 64px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
       text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 64px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+    }
+
+    .step {
+      background: var(--card);
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .step:hover { border-color: var(--faint); }
+
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+
+    .step:hover .step-number { color: var(--gold); }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .step-body {
+      font-size: 14px;
+      color: var(--muted);
       line-height: 1.6;
     }
 
-    .divider { width: 48px; height: 2px; background: var(--gold); margin: 0 auto 64px; }
-    .section { max-width: 1000px; margin: 0 auto; padding: 80px 24px; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 16px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 700; text-align: center; line-height: 1.15; letter-spacing: -1px; margin-bottom: 64px; }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; }
-    .step { background: var(--card); padding: 40px 32px; border: 1px solid var(--border); position: relative; transition: border-color 0.3s; }
-    .step:hover { border-color: var(--faint); }
-    .step-number { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; color: var(--border); line-height: 1; margin-bottom: 16px; transition: color 0.3s; }
-    .step:hover .step-number { color: var(--gold); }
-    .step-title { font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
-    .step-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .principle { padding: 32px; border: 1px solid var(--border); border-radius: 2px; transition: border-color 0.3s, background 0.3s; }
-    .principle:hover { border-color: var(--gold); background: rgba(255,182,18,0.03); }
-    .principle-icon { font-size: 28px; margin-bottom: 16px; }
-    .principle-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
-    .principle-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .quote-section { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 24px; text-align: center; }
-    .quote { font-family: 'Playfair Display', serif; font-size: clamp(22px, 4vw, 40px); font-style: italic; font-weight: 700; max-width: 700px; margin: 0 auto 24px; line-height: 1.3; color: var(--text); }
-    .quote-attr { font-size: 13px; color: var(--muted); letter-spacing: 1px; }
-    .support-section { max-width: 600px; margin: 0 auto; padding: 80px 24px; text-align: center; }
-    .support-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; margin-bottom: 16px; }
-    .support-body { font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
-    .support-email { display: inline-block; color: var(--gold); font-size: 18px; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(255,182,18,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
+    /* ── PRINCIPLES ── */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .principle {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .principle:hover {
+      border-color: var(--gold);
+      background: rgba(255,182,18,0.03);
+    }
+
+    .principle-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .principle-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .principle-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── QUOTE ── */
+    .quote-section {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 40px);
+      font-style: italic;
+      font-weight: 700;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .quote-attr {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* ── SUPPORT ── */
+    .support-section {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .support-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .support-body {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .support-email {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,182,18,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
     .support-email:hover { border-color: var(--gold); }
-    footer { border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
-    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
     .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 12px; color: var(--faint); }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 600px) { nav { padding: 16px 20px; top: 38px; } .nav-links { display: none; } .steps { grid-template-columns: 1fr; } }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--faint);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .steps { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-
-<div class="beta-banner">
-  <strong>Beta</strong> — This app is currently in TestFlight testing and not yet available on the App Store. <a href="https://testflight.apple.com/join/A3GbQtv6">Join the beta ↗</a>
-</div>
 
 <nav>
   <a class="nav-logo" href="/">It's Just A Dance</a>
@@ -203,8 +446,9 @@
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Now in Beta · TestFlight</p>
+  <p class="hero-eyebrow">Available on the App Store</p>
   <h1 class="hero-title">It's Just <em>A Dance.</em></h1>
   <p class="hero-subtitle">Find your partner tonight.</p>
   <p class="hero-body">
@@ -212,22 +456,17 @@
     <strong>It's Just A Dance</strong> removes the hardest part of a night out — the ask.
     Check in at your venue. Get your color. Find someone who wants to dance too.
   </p>
-  <div class="beta-cta">
-    <div class="beta-cta-row">
-      <a class="btn-primary" href="https://testflight.apple.com/join/A3GbQtv6" target="_blank">
-        Join the Beta on TestFlight
-      </a>
-      <a class="btn-secondary" href="#how-it-works">See how it works</a>
-    </div>
-    <div class="qr-block">
-      <p class="qr-label">Scan to join</p>
-      <img class="qr-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaCAYAAAA2BoVjAAAKFklEQVR4nO3dO5LtMBVAUZpqQjM9xsj0SAmalOAWqOppP50nrzUAX3/UvcvBkb+e5/n5CwBE/nr6BAC4m9AAkBIaAFJCA0BKaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEgJTQApIQGgJTQAJASGgBS37sP+K9//m33Ia/w93/8+/QpbLH6fFevd/d62f27tzy3Vaee7/Tjvc3ude+NBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEgJTQApIQGgNT2nQFW3TJxbbL495g+OT59PZ9ap7vvy6n7PP35rjq1DrzRAJASGgBSQgNASmgASAkNACmhASAlNACkhAaAlNAAkDq2M8CqWyaaV+2+3lOT2dOf2/SJ/+nrYPrzPcV9+cwbDQApoQEgJTQApIQGgJTQAJASGgBSQgNASmgASAkNAKnxOwPw2fRJ7+kT9dPv36rpE+Gn7vP0+/I23mgASAkNACmhASAlNACkhAaAlNAAkBIaAFJCA0BKaABI2RlgmFsmqU/97urxTu2EsPu+vO14Jv7/TN5oAEgJDQApoQEgJTQApIQGgJTQAJASGgBSQgNASmgASI3fGcAk8GcmuD+7ZSeE3TsXrJp+ftP5f/WZNxoAUkIDQEpoAEgJDQApoQEgJTQApIQGgJTQAJASGgBSx3YGMFn82fSJ/+nH22369e7+O3rb+e3+XT7zRgNASmgASAkNACmhASAlNACkhAaAlNAAkBIaAFJCA0Dq63men9MnQedtE82+2f57TF9X1sEs3mgASAkNACmhASAlNACkhAaAlNAAkBIaAFJCA0BKaABIXbMzwO5J5VPfRL9lovmW57Fq+vmtumX9Tfe2/xveaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEh9n/rh1cnY3ROvp463er3TJ+qnTyBPn9CfvuPE9N89tf6mr5fpvNEAkBIaAFJCA0BKaABICQ0AKaEBICU0AKSEBoCU0ACQ2r4zwO4J31uOt9v0HQ6mT3DvPr/p6+DU+Z0y/Xmsmv7/b5U3GgBSQgNASmgASAkNACmhASAlNACkhAaAlNAAkBIaAFJfz/P8nPjhU98mP2X6xPot92+66fd5t+nrfrdbdmqwMwAAfxShASAlNACkhAaAlNAAkBIaAFJCA0BKaABICQ0Aqe/dB5w+8Tr9G9y7jzd94nr3+d0yeT/972j3+ju1rqbf51t4owEgJTQApIQGgJTQAJASGgBSQgNASmgASAkNACmhASC1fWeA6RP1u506v1OT1NOfB5/dsmPCqf8vq6b/Xzu1DrzRAJASGgBSQgNASmgASAkNACmhASAlNACkhAaAlNAAkNq+M8DbJsJPTQJPn9Cffn63rNO3TbavOnVfTh1v9+/uvn/eaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEht3xlg+rewb/kG9y2T7aumP9+3TXrvNn2Sf9X09XJqHXijASAlNACkhAaAlNAAkBIaAFJCA0BKaABICQ0AKaEBIPX1PM/PzgNOn1ifPrn7Nm97Hm/b4eDUxP/u633bDiC7r9cbDQApoQEgJTQApIQGgJTQAJASGgBSQgNASmgASAkNAKnv3QecPoF8ahL41ETzbtO/7X7LOlh1amJ9t+kT//5+f403GgBSQgNASmgASAkNACmhASAlNACkhAaAlNAAkBIaAFJfz/P87Dzg9G9w7zZ9wnf6+d3ilnV/ywT820zfEcMbDQApoQEgJTQApIQGgJTQAJASGgBSQgNASmgASAkNAKntOwOccsu32F3HZ7uv45bz83w/u+X+Td9JYpU3GgBSQgNASmgASAkNACmhASAlNACkhAaAlNAAkBIaAFLX7Ayw2/TJ51WnruPU5LPr/TXTJ/R3X++qU+dnZwAAWCA0AKSEBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEg9X3qh09NDO+etH3bpPcppybCV02fqL/ld1dNP7+38UYDQEpoAEgJDQApoQEgJTQApIQGgJTQAJASGgBSQgNA6ut5np/TJ/G/TP8G/C1O7cDwtm/Kr5p+HW9bB37313ijASAlNACkhAaAlNAAkBIaAFJCA0BKaABICQ0AKaEBIPV9+gT+n1smwk99i/2U6TsrnJrkP/V8b1mn0yfvdx9v+sT/Km80AKSEBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEgJTQApL6e5/k58cPTvxF+i7fdv7ftrDB9sn3VLTsN7HbLevZGA0BKaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQOp79wGnTyCvOvVN+VXTJ4an379Tdl/HLX9v05/vqR0YVp363VXeaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEht3xlg1fRJ4FW3XMcp0yfld//uqlOT/NN3EJj+3Ha75e/DGw0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEgJDQCpYzsD+Ab3r/3uKae+Ob7KRP2v2b3uTx1v1fT1vGr6+vNGA0BKaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQOrreZ6fnQc8NVG/2/QJ7t3etrPC9J0pdju1nqdPrJ8y/b7sXs/eaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEht3xmAXzN9Qnr6t+JP7TSwavpOCNNNv95bJvl380YDQEpoAEgJDQApoQEgJTQApIQGgJTQAJASGgBSQgNA6nv3AadPtp+ye3L31DfHp0/87z7e9Anz6fd51S33ebpT1+uNBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEgJTQApIQGgNT2nQFWvW3SdtWp+/K2ifBV06/3lon/UzuKTF9/0+/fKm80AKSEBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEgJTQApI7tDLDqbRPDp653+rfTp6+DW3YQWDV9Yn36pPz0HQl280YDQEpoAEgJDQApoQEgJTQApIQGgJTQAJASGgBSQgNAavzOAHxmMvuz6RP1u3dgOLWjg+v4Pb+7avpOA95oAEgJDQApoQEgJTQApIQGgJTQAJASGgBSQgNASmgASNkZYJjpk9SrTu1ccOq+nLre6RPrq06t+1vu3/R15Y0GgJTQAJASGgBSQgNASmgASAkNACmhASAlNACkhAaA1NfzPD87Dzh9Yn031/t73HL/dpu+/m45v1WndojYzc4AAPxRhAaAlNAAkBIaAFJCA0BKaABICQ0AKaEBICU0AKSO7QzwNtMn23dPcE9fB2+7jlW3TPJPP79VtzxfbzQApIQGgJTQAJASGgBSQgNASmgASAkNACmhASAlNACktu8MAAD/zRsNACmhASAlNACkhAaAlNAAkBIaAFJCA0BKaABICQ0AKaEBICU0AKSEBoCU0ACQEhoAUkIDQEpoAEgJDQApoQEgJTQApP4DxdWa/ZxQqt4AAAAASUVORK5CYII=" alt="TestFlight QR Code" />
-      <p class="qr-sub">Requires iPhone with TestFlight installed</p>
-    </div>
-    <p class="beta-note">This is a beta build. You may encounter bugs. Your feedback helps us improve before the App Store launch.</p>
+  <div class="hero-cta">
+    <!-- TODO: Replace href="#" with your App Store URL before going live -->
+    <a class="btn-primary" href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+    <a class="btn-secondary" href="#how-it-works">See how it works</a>
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
 <section class="section" id="how-it-works">
   <p class="section-label">The flow</p>
   <h2 class="section-title">One song. One moment.<br>One dance.</h2>
@@ -240,7 +479,7 @@
     <div class="step">
       <div class="step-number">02</div>
       <div class="step-title">Browse</div>
-      <div class="step-body">See who else is there and looking to dance. Each dancer shows their role, skill level, and rating badge if earned. No photos. No names.</div>
+      <div class="step-body">See who else is there and looking to dance. Each dancer shows their role, skill level, and rating badge if earned. No photos. No names. Just compatibility.</div>
     </div>
     <div class="step">
       <div class="step-number">03</div>
@@ -259,17 +498,19 @@
     </div>
     <div class="step">
       <div class="step-number">06</div>
-      <div class="step-title">Leave clean</div>
+      <div class="step-title">Take the Memory, Leave the Rest</div>
       <div class="step-body">When you check out, everything disappears. No connections that follow you home. It's just a dance.</div>
     </div>
   </div>
 </section>
 
+<!-- QUOTE -->
 <div class="quote-section">
   <p class="quote">"Built for dancers, not daters. No photos. No messages. No profiles that follow you home."</p>
   <p class="quote-attr">— It's Just A Dance</p>
 </div>
 
+<!-- PRINCIPLES -->
 <section class="section" id="principles">
   <p class="section-label">Our promise</p>
   <h2 class="section-title">Designed differently,<br>on purpose.</h2>
@@ -302,15 +543,19 @@
     <div class="principle">
       <div class="principle-icon">⭐</div>
       <div class="principle-title">Ratings that matter.</div>
-      <div class="principle-body">Post-dance ratings follow your account permanently. The community self-corrects over time, organically.</div>
+      <div class="principle-body">Post-dance ratings follow your account permanently — not your session. The community self-corrects over time, organically.</div>
     </div>
   </div>
 </section>
 
+<!-- SUPPORT -->
 <section class="support-section" id="support">
   <div class="divider"></div>
   <h2 class="support-title">Need help?</h2>
-  <p class="support-body">Have a question about the app, found a bug, or want to suggest a venue? We read every email and respond personally.</p>
+  <p class="support-body">
+    Have a question about the app, found a bug, or want to suggest a venue?
+    We read every email and respond personally.
+  </p>
   <a class="support-email" href="mailto:support@itsjustadance.com">support@itsjustadance.com</a>
 </section>
 
@@ -321,7 +566,7 @@
     <a href="support.html">Support</a>
     <a href="mailto:support@itsjustadance.com">Contact</a>
   </div>
-  <p class="footer-copy">© 2026 M. Rivera. All rights reserved. iPhone is a trademark of Apple Inc. Currently in Beta — not yet available on the App Store.</p>
+  <p class="footer-copy">© 2026 M. Rivera. All rights reserved. iPhone is a trademark of Apple Inc.</p>
 </footer>
 
 </body>
