@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | It's Just A Dance</title>
+  <meta name="description" content="Notes from the floor — building It's Just A Dance in public." />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8V1XS2K0N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8V1XS2K0N');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #FFB612;
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --border: #1f1f1f;
+      --text: #e8e8e8;
+      --muted: #666;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--gold); }
+
+    .page-header {
+      padding: 9rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .post-list {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    .post-card {
+      display: block;
+      text-decoration: none;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+      position: relative;
+    }
+
+    .post-card:last-child { border-bottom: none; }
+
+    .post-card:hover .post-title { color: var(--gold); }
+
+    .post-card:hover .post-arrow { opacity: 1; transform: translateX(0); }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .post-category {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(255,182,18,0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .post-date {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.7rem;
+      transition: color 0.2s;
+    }
+
+    .post-excerpt {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    .post-arrow {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateX(-6px) translateY(-50%);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .empty-state {
+      padding: 4rem 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .fade-in:nth-child(2) { animation-delay: 0.08s; }
+    .fade-in:nth-child(3) { animation-delay: 0.16s; }
+    .fade-in:nth-child(4) { animation-delay: 0.24s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .page-header { padding: 7rem 1.2rem 3rem; }
+      .post-list { padding: 2rem 1.2rem 4rem; }
+      .post-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">It's Just A Dance</a>
+  <div class="nav-links">
+    <a href="/blog/" class="nav-link active">Blog</a>
+    <a href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799" class="nav-link">Download ↗</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Notes from the floor</h1>
+  <p>Building It's Just A Dance in public — the honest version.</p>
+</div>
+
+<div class="post-list">
+
+  <a href="/blog/the-chicken-and-the-egg.html" class="post-card fade-in">
+    <div class="post-meta">
+      <span class="post-category">Founder Notes</span>
+      <span class="post-date">May 24, 2026</span>
+    </div>
+    <div class="post-title">The Chicken and the Egg</div>
+    <div class="post-excerpt">The honest truth about why a dance app needs your help to work — and why I'm showing up anyway.</div>
+    <span class="post-arrow">→</span>
+  </a>
+
+  <!-- Future posts go here, newest first:
+  <a href="/blog/why-no-photos.html" class="post-card fade-in">
+    <div class="post-meta">
+      <span class="post-category">Design</span>
+      <span class="post-date">Coming soon</span>
+    </div>
+    <div class="post-title">Why No Photos</div>
+    <div class="post-excerpt">The single hardest design decision — and why we're not changing it.</div>
+    <span class="post-arrow">→</span>
+  </a>
+  -->
+
+</div>
+
+<footer>
+  <p>© 2026 It's Just A Dance · <a href="https://itsjustadance.com">itsjustadance.com</a> · <a href="https://itsjustadance.com/privacy">Privacy</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Chicken and the Egg | It's Just A Dance</title>
+  <meta name="description" content="The honest truth about why a dance app needs your help to work — and why I'm showing up anyway." />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8V1XS2K0N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8V1XS2K0N');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #FFB612;
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --border: #1f1f1f;
+      --text: #e8e8e8;
+      --muted: #666;
+      --accent-dim: rgba(255, 182, 18, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    .hero {
+      padding: 9rem 2rem 4rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .category {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(255,182,18,0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .byline {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .byline-dot {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1rem;
+      color: #000; flex-shrink: 0;
+    }
+    .byline-text { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .byline-text strong { color: var(--text); display: block; font-weight: 500; }
+
+    .divider { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+    .divider hr { border: none; border-top: 1px solid var(--border); }
+
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+    article p {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #c8c8c8;
+      margin-bottom: 1.6rem;
+    }
+    article p:first-child {
+      font-size: 1.2rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+    article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 3rem 0 1.2rem;
+      line-height: 1.3;
+    }
+    article h2::before {
+      content: '';
+      display: block;
+      width: 32px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .pullquote {
+      margin: 2.5rem 0;
+      padding: 1.8rem 2rem;
+      background: var(--accent-dim);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem !important;
+      line-height: 1.6 !important;
+      color: #fff !important;
+      margin: 0 !important;
+    }
+    .field-note {
+      margin: 2.5rem 0;
+      padding: 1.4rem 1.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    .field-note-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .field-note p {
+      font-size: 0.95rem !important;
+      color: var(--muted) !important;
+      margin: 0 !important;
+      line-height: 1.7 !important;
+    }
+    .cta-block {
+      margin-top: 4rem;
+      padding: 2.5rem;
+      background: var(--surface);
+      border: 1px solid rgba(255,182,18,0.2);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .cta-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem !important;
+      color: #fff !important;
+      margin-bottom: 1.5rem !important;
+      line-height: 1.4 !important;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cta-button:hover { opacity: 0.88; transform: translateY(-1px); }
+    .cta-sub {
+      margin-top: 1rem;
+      font-size: 0.78rem !important;
+      color: var(--muted) !important;
+      margin-bottom: 0 !important;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .fade-in:nth-child(2) { animation-delay: 0.1s; }
+    .fade-in:nth-child(3) { animation-delay: 0.2s; }
+    .fade-in:nth-child(4) { animation-delay: 0.3s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 7rem 1.2rem 3rem; }
+      article { padding: 2rem 1.2rem 4rem; }
+      .pullquote { padding: 1.2rem 1.4rem; }
+      .cta-block { padding: 1.8rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">It's Just A Dance</a>
+  <div class="nav-links">
+    <a href="/blog/" class="nav-link">Blog</a>
+    <a href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799" class="nav-link">Download ↗</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="fade-in"><span class="category">Founder Notes</span></div>
+  <h1 class="fade-in">The Chicken<br>and the Egg</h1>
+  <p class="subtitle fade-in">The honest truth about why a dance app needs your help to work — and why I'm showing up anyway.</p>
+  <div class="byline fade-in">
+    <div class="byline-dot">M</div>
+    <div class="byline-text">
+      <strong>Michael Rivera</strong>
+      Founder, It's Just A Dance · May 24, 2026
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr /></div>
+
+<article>
+
+  <p>I need to tell you something honest about how this app works — and why I need your help right now.</p>
+
+  <p>It's Just A Dance connects dancers at the same venue who both want to dance. You check in at a bar or dance hall. You get a color for the night — something like Teal Circle or Plum Triangle. You see who else is there and ready. You tap Ask on someone who catches your eye. If they tap Ask on you too, it's a match. Your colors light up. You find each other on the floor. No photos. No messages. No face-to-face rejection. One dance.</p>
+
+  <p>The app works. I know it works because I've watched people react to it. The rating screen — where you log how the dance went — gets the strongest reaction of any feature every single time I demo it. People get it immediately. They want it.</p>
+
+  <p>Here's the problem.</p>
+
+  <h2>Nobody shows up to an empty room</h2>
+
+  <p>The app only works when people are already there. You need to be checked in at the same venue at the same time as someone else for anything to happen. That's the design — it's also the catch.</p>
+
+  <p>It's the classic chicken and egg. You won't check in if no one else is there. No one else checks in because you're not there. Somebody has to go first.</p>
+
+  <div class="pullquote">
+    <p>"I watched a guy work up the courage to ask someone to dance. Twice. Both times, no. I don't know what happened to him after that."</p>
+  </div>
+
+  <p>That's exactly the problem this app solves — and it goes both ways. Here's the thing about It's Just A Dance: if you're checked in, you're there and you want to dance. That's the only reason to open the app. No browsing, no lurking. Everyone you see on that screen is at the same venue, right now, ready to go.</p>
+
+  <p>So he didn't need to guess and he didn't need to risk anything. He could have tapped Ask on someone whose dance style and skill level matched his — no photos, just the information that actually matters on a dance floor. If she felt the same way, they'd find each other. If not, nobody knows. No moment. No walk back to the rail. Just a dance, or not.</p>
+
+  <p>And for her — she gets to say no without saying anything at all. No awkward eye contact. No moment where she has to be the one who crushed someone's night. She just doesn't tap. That's it.</p>
+
+  <h2>What I've been doing about it</h2>
+
+  <p>I built the app in 23 days. First line of code April 25th. Live on the App Store May 18th. Then I printed business cards — two designs, five hundred cards — and started showing up.</p>
+
+  <div class="field-note">
+    <div class="field-note-label">Field Note — May 21, 2026</div>
+    <p>Latin night at Whiskey River West. Packed floor. I seeded cards on every empty table. One waitress picked them up faster than I could put them down. I moved to the rail — she couldn't get those. Three bartenders have the app. None of them needed convincing. That might be the most encouraging thing that's happened so far.</p>
+  </div>
+
+  <p>I've talked to bartenders at two venues in two days. All of them got it immediately. All of them wanted more cards. None of them required convincing. That's not nothing.</p>
+
+  <p>I've been the only person checked in at a venue full of dancers. I've stood at the rail and watched people want to dance and not ask. I've watched the exact problem I built this to solve play out in real time, right in front of me, and I couldn't do anything about it because there was nobody else in the app.</p>
+
+  <p>That's the gap. That's what I need help closing.</p>
+
+  <h2>What one night could do</h2>
+
+  <p>I don't need a million users. I don't need to go viral. I need 10 to 15 people checked in at the same venue on the same night. That's the threshold where mutual matches become probable. Where the app stops being theoretical and starts being real.</p>
+
+  <p>One successful night creates a story. Stories spread at bars faster than any algorithm. The person who gets their first match tells someone. The bartender who saw it happen mentions it. The card on the rail gets picked up and scanned.</p>
+
+  <div class="pullquote">
+    <p>"I just need 10 people. One night. That's the whole ask."</p>
+  </div>
+
+  <p>If you've ever stood at the rail wanting to ask someone to dance and didn't — this app is for you. If you know someone like that, send them this. If you're in the Houston area and you dance, download it, check in next time you go out, and be part of night one.</p>
+
+  <p>The app is free. No photos. No messages. No profiles that follow you home. When the night ends, everything disappears.</p>
+
+  <p>It's Just A Dance. Just show up.</p>
+
+  <div class="cta-block">
+    <p>"One song. One moment. One dance."</p>
+    <a href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799" class="cta-button">Download on the App Store</a>
+    <p class="cta-sub">iPhone only · Free · Houston &amp; surrounding areas</p>
+  </div>
+
+</article>
+
+<footer>
+  <p>© 2026 It's Just A Dance · <a href="https://itsjustadance.com">itsjustadance.com</a> · <a href="https://itsjustadance.com/privacy">Privacy</a></p>
+</footer>
+
+</body>
+</html>
