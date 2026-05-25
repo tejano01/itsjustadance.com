@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why No Photos | It's Just A Dance</title>
+  <meta name="description" content="Every app has photos. Here's why this one never will." />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8V1XS2K0N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X8V1XS2K0N');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #FFB612;
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --border: #1f1f1f;
+      --text: #e8e8e8;
+      --muted: #666;
+      --accent-dim: rgba(255, 182, 18, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    .hero {
+      padding: 9rem 2rem 4rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .category {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(255,182,18,0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .byline {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .byline-dot {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1rem;
+      color: #000; flex-shrink: 0;
+    }
+    .byline-text { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .byline-text strong { color: var(--text); display: block; font-weight: 500; }
+
+    .divider { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+    .divider hr { border: none; border-top: 1px solid var(--border); }
+
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+    article p {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #c8c8c8;
+      margin-bottom: 1.6rem;
+    }
+    article p:first-child {
+      font-size: 1.2rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+    article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 3rem 0 1.2rem;
+      line-height: 1.3;
+    }
+    article h2::before {
+      content: '';
+      display: block;
+      width: 32px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .pullquote {
+      margin: 2.5rem 0;
+      padding: 1.8rem 2rem;
+      background: var(--accent-dim);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem !important;
+      line-height: 1.6 !important;
+      color: #fff !important;
+      margin: 0 !important;
+    }
+    .cta-block {
+      margin-top: 4rem;
+      padding: 2.5rem;
+      background: var(--surface);
+      border: 1px solid rgba(255,182,18,0.2);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .cta-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem !important;
+      color: #fff !important;
+      margin-bottom: 1.5rem !important;
+      line-height: 1.4 !important;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cta-button:hover { opacity: 0.88; transform: translateY(-1px); }
+    .cta-sub {
+      margin-top: 1rem;
+      font-size: 0.78rem !important;
+      color: var(--muted) !important;
+      margin-bottom: 0 !important;
+    }
+
+    .post-nav {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+    .post-nav a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .post-nav a:hover { color: var(--gold); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .fade-in:nth-child(2) { animation-delay: 0.1s; }
+    .fade-in:nth-child(3) { animation-delay: 0.2s; }
+    .fade-in:nth-child(4) { animation-delay: 0.3s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 7rem 1.2rem 3rem; }
+      article { padding: 2rem 1.2rem 4rem; }
+      .pullquote { padding: 1.2rem 1.4rem; }
+      .cta-block { padding: 1.8rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">It's Just A Dance</a>
+  <div class="nav-links">
+    <a href="/blog/" class="nav-link">Blog</a>
+    <a href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799" class="nav-link">Download ↗</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="fade-in"><span class="category">Design</span></div>
+  <h1 class="fade-in">Why No Photos</h1>
+  <p class="subtitle fade-in">Every app has photos. Here's why this one never will.</p>
+  <div class="byline fade-in">
+    <div class="byline-dot">M</div>
+    <div class="byline-text">
+      <strong>Michael Rivera</strong>
+      Founder, It's Just A Dance · May 29, 2026
+    </div>
+  </div>
+</div>
+
+<div class="divider"><hr /></div>
+
+<article>
+
+  <p>There's a question I get every time I show someone the app for the first time.</p>
+
+  <p>"Wait — no photos? How do you know who you're asking?"</p>
+
+  <p>It's a fair question. Every app you've ever used has photos. Dating apps, sure. But also food delivery. Airbnb. Even your contacts list. Photos are how we orient ourselves to strangers. Removing them feels like removing something essential.</p>
+
+  <p>So why did I do it?</p>
+
+  <p>The honest answer is that photos would have destroyed the thing I was trying to build.</p>
+
+  <h2>The ask is the whole problem</h2>
+
+  <p>The app exists because asking a stranger to dance is hard. Not mildly uncomfortable — genuinely hard. Hard enough that people stand at the rail for an entire night wanting to dance and never ask. Hard enough that someone who loves dancing goes home having not danced.</p>
+
+  <p>I've watched it happen. You've probably felt it yourself.</p>
+
+  <p>The reason it's hard is rejection. Not the rejection itself — the public, visible, face-to-face moment of it. The walk back to the rail. The not knowing where to look. The other person not knowing where to look either.</p>
+
+  <p>It's Just A Dance removes that moment. Mutual match means if you tap Ask and they don't tap back, nothing happens. Nobody knows. You just move on.</p>
+
+  <div class="pullquote">
+    <p>If there are photos, the rejection moves earlier. You're being filtered before you even get a chance.</p>
+  </div>
+
+  <p>Now the person swiping through the browse screen is making snap judgments based on appearance before a single tap has been sent. The dynamic you were trying to escape just relocated. The dance floor becomes Tinder with better music.</p>
+
+  <h2>What actually matters on a dance floor</h2>
+
+  <p>When you're deciding whether to ask someone to dance, what information do you actually need?</p>
+
+  <p>You need to know they want to dance. You need to know their style and skill level roughly match yours. You need to know they're open to dancing with someone like you.</p>
+
+  <p>That's it. That's the whole list.</p>
+
+  <p>None of that is in a photo.</p>
+
+  <p>What's in a photo is whether you find them attractive. Which is real human information — I'm not pretending it isn't. But it's also the information that, on a dance floor, leads to the same problem you were trying to solve. The ask is still scary. The rejection is still public. The rail is still full of people who wanted to dance and didn't.</p>
+
+  <h2>Who it actually protects</h2>
+
+  <p>I built this thinking it was primarily for people who are nervous to ask. Shy dancers. New dancers. People who want to dance but can't get past that first moment.</p>
+
+  <p>And it is for them.</p>
+
+  <p>But the longer I've watched people react to the app, the more I think it protects everyone equally — including the people who get asked.</p>
+
+  <p>Getting asked to dance by someone you don't want to dance with is its own uncomfortable moment. You have to say no. In person. To their face. While they're standing right there. It's not fun for anyone involved.</p>
+
+  <p>No photos means no one is putting themselves in that position either. You tap Ask on someone because their dance style and skill level caught your attention. If they feel the same way about you, you dance. If not, nothing happens. The moment never occurs.</p>
+
+  <div class="pullquote">
+    <p>No photos isn't a limitation. It's the whole point.</p>
+  </div>
+
+  <h2>It's Just A Dance. Not Just A Look.</h2>
+
+  <p>The no-photos rule isn't going to change. It's not a V1 decision we'll revisit when the app grows. It's the reason the app exists.</p>
+
+  <p>Every design decision in It's Just A Dance flows from one idea: the dance floor should be a place where anyone can ask anyone, without it costing them anything to try. Photos would make that impossible. So there are no photos.</p>
+
+  <p>There never will be.</p>
+
+  <div class="cta-block">
+    <p>"One song. One moment. One dance."</p>
+    <a href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799" class="cta-button">Download on the App Store</a>
+    <p class="cta-sub">iPhone only · Free · Houston &amp; surrounding areas</p>
+  </div>
+
+</article>
+
+<div class="post-nav">
+  <a href="/blog/the-chicken-and-the-egg.html">← The Chicken and the Egg</a>
+  <a href="/blog/">All posts</a>
+</div>
+
+<footer>
+  <p>© 2026 It's Just A Dance · <a href="https://itsjustadance.com">itsjustadance.com</a> · <a href="https://itsjustadance.com/privacy">Privacy</a></p>
+</footer>
+
+</body>
+</html>
