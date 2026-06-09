@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Field notes from showing up at venues, talking to strangers, and learning what the app still needs to become." />
+  <title>What I've Learned Talking to Strangers Outside Bars | It's Just A Dance</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d0d0d;
+      color: #e8e8e8;
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    a { color: #FFB612; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 32px;
+      border-bottom: 1px solid #1e1e1e;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    nav .logo { font-family: 'Georgia', serif; font-size: 16px; color: #fff; font-weight: bold; }
+    nav .nav-links { display: flex; gap: 24px; font-family: -apple-system, sans-serif; font-size: 14px; }
+
+    /* ── Article wrapper ── */
+    article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+    }
+
+    /* ── Label ── */
+    .label {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFB612;
+      margin-bottom: 20px;
+    }
+
+    /* ── Title ── */
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: normal;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    /* ── Subtitle ── */
+    .subtitle {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 18px;
+      color: #888;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    /* ── Byline ── */
+    .byline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .byline-avatar {
+      width: 40px; height: 40px;
+      background: #FFB612;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Georgia', serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      flex-shrink: 0;
+    }
+    .byline-text { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; color: #888; }
+    .byline-text strong { color: #e8e8e8; }
+
+    /* ── Body copy ── */
+    p { margin-bottom: 28px; color: #d0d0d0; }
+
+    /* ── Section headings ── */
+    h2 {
+      font-family: 'Georgia', serif;
+      font-size: 26px;
+      font-weight: normal;
+      color: #fff;
+      margin: 56px 0 20px;
+      line-height: 1.3;
+    }
+
+    /* ── Pull quote ── */
+    blockquote {
+      border-left: 3px solid #FFB612;
+      margin: 40px 0;
+      padding: 4px 0 4px 24px;
+      font-size: 20px;
+      font-style: italic;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    /* ── Pill / feature callout ── */
+    .pill {
+      display: inline-block;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 24px;
+      padding: 10px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      color: #e8e8e8;
+      margin: 8px 0 28px;
+    }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid #1e1e1e;
+      margin: 56px 0;
+    }
+
+    /* ── CTA block ── */
+    .cta-block {
+      margin-top: 64px;
+      padding: 40px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .cta-block p {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #FFB612;
+      color: #000;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .cta-button:hover { background: #e0a200; text-decoration: none; }
+    .cta-sub {
+      margin-top: 14px;
+      font-size: 12px !important;
+      color: #555 !important;
+    }
+
+    /* ── Tagline ── */
+    .tagline {
+      text-align: center;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #555;
+      margin: 48px 0 0;
+    }
+
+    /* ── Post nav ── */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid #1e1e1e;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      gap: 16px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px;
+      border-top: 1px solid #1e1e1e;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://itsjustadance.com/" class="logo">It's Just A Dance</a>
+    <div class="nav-links">
+      <a href="https://itsjustadance.com/blog/">Blog</a>
+      <a href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799">Download ↗</a>
+    </div>
+  </nav>
+
+  <article>
+
+    <div class="label">Founder Notes</div>
+
+    <h1>What I've Learned Talking to Strangers Outside Bars</h1>
+
+    <p class="subtitle">Field notes from showing up at venues, talking to strangers, and learning what the app still needs to become.</p>
+
+    <div class="byline">
+      <div class="byline-avatar">M</div>
+      <div class="byline-text">
+        <strong>M. Rivera</strong><br>
+        Founder, It's Just A Dance · June 8, 2026
+      </div>
+    </div>
+
+    <p>Nobody tells you this part.</p>
+
+    <p>You build the app. You ship it. You print the cards. And then you go stand outside dance venues on Friday nights and talk to strangers about a problem they didn't know had a solution yet.</p>
+
+    <p>This is that part.</p>
+
+    <hr>
+
+    <h2>The women outside Whiskey River North</h2>
+
+    <p>It was a Friday. Three women sitting outside before heading in. I gave them the pitch — check in, get a color, tap Ask, mutual match, nobody gets rejected. They got it fast. Faster than most.</p>
+
+    <p>Then I got to the rating screen. After a dance you rate how it went — Great, Good, Not a great fit. One of them made a face. Didn't say anything. Just a face.</p>
+
+    <p>I filed that away.</p>
+
+    <p>Then she asked the question I wasn't expecting.</p>
+
+    <blockquote>"What if someone is too handsy? Can I make sure I never match with them again?"</blockquote>
+
+    <p>Not alarmed. Just matter-of-fact. Like it was a reasonable thing to want. Because it is.</p>
+
+    <p>I told her yes. And then I went home and designed it.</p>
+
+    <p>After a dance that didn't work, a quiet pill appears under "Not a great fit."</p>
+
+    <div class="pill">Always pass if we match again</div>
+
+    <p>One tap. Silent. Permanent. No notification to the other person. No confrontation. No explanation required. They simply never appear in your browse list again.</p>
+
+    <p>It's not built into a shipping version yet — that comes in a future update. But the design is locked and the reason it exists is standing outside a bar on a Friday night in Cypress, Texas.</p>
+
+    <p>It doesn't feel like a block because it isn't one. It's just a preference. The dance floor equivalent of quietly choosing a different corner of the room.</p>
+
+    <hr>
+
+    <h2>The face on the rating screen</h2>
+
+    <p>I've been thinking about that face since May 29th.</p>
+
+    <p>Every other time I've demoed the rating screen it gets the strongest positive reaction of any feature. People lean in. They get it immediately. They want it.</p>
+
+    <p>One face that said something different is one data point. But I'm watching for it. In a bar environment, perception is reality. If "rating" feels like judgment rather than feedback, that's a problem worth solving before it becomes a pattern.</p>
+
+    <p>I don't have an answer yet. Just a face I haven't forgotten.</p>
+
+    <hr>
+
+    <h2>The dance instructor</h2>
+
+    <p>I ran into him at a venue. Someone I know — took lessons from him, actually. I gave him the pitch on the spot, fumbled around trying to find the demo video, couldn't pull it up in time.</p>
+
+    <p>He said it was cool.</p>
+
+    <p>I've heard "that's cool" enough times now to know what it means and what it doesn't. The video would have done more than the words. I know that now.</p>
+
+    <p>I found the video after. Marked it a favorite. The follow-up email is written. Ready for next time.</p>
+
+    <hr>
+
+    <h2>What I know now that I didn't know in May</h2>
+
+    <p>Bartenders get it faster than anyone. Every single one. No convincing required. They've watched the problem play out from behind the bar for years. When I describe it, they're already nodding before I finish the sentence.</p>
+
+    <p>Dancers are harder. Not because they don't want it — they do. But they need to see it work first. That's still the gap. That's still the chicken and the egg.</p>
+
+    <p>The app is ready. The venues are seeded. The cards are on the tables. Three bartenders have stacks of them and are handing them out organically. A script is written for a video that Zoe — bartender, believer, not an actor — is going to shoot with me one slow night at the bar.</p>
+
+    <p>We're both going to be awkward the first two takes. By the third one it'll feel like a conversation. Because it is.</p>
+
+    <p>In the meantime I've been heads-down on a second project — a private family archive app called Remember Project, built to capture audio interviews with aging loved ones before those stories are gone. Different app, same instinct: see a real problem, build something for it.</p>
+
+    <p>IJAD is waiting for critical mass. I'm not waiting with it.</p>
+
+    <hr>
+
+    <p>Nobody tells you this part because most people don't do this part. They launch and wait.</p>
+
+    <p>I'm not waiting.</p>
+
+    <p>The first match is coming. When it happens, you'll read about it here.</p>
+
+    <div class="tagline">"One song. One moment. One dance."</div>
+
+    <div class="cta-block">
+      <p>iPhone only · Free · Houston &amp; surrounding areas</p>
+      <a class="cta-button" href="https://apps.apple.com/us/app/its-just-a-dance/id6765789799">Download on the App Store</a>
+      <p class="cta-sub">No photos. No messages. No profiles that follow you home.</p>
+    </div>
+
+    <div class="post-nav">
+      <a href="https://itsjustadance.com/blog/why-no-photos.html">← Why No Photos</a>
+      <a href="https://itsjustadance.com/blog/">All posts</a>
+    </div>
+
+  </article>
+
+  <footer>
+    © 2026 It's Just A Dance · <a href="https://itsjustadance.com">itsjustadance.com</a> · <a href="https://itsjustadance.com/privacy">Privacy</a>
+  </footer>
+
+</body>
+</html>
